@@ -69,7 +69,7 @@ class Spriteous
 
     return sprites unless opts[:save_format]
 
-    unless opts[:save_format].include? '%d'
+    unless opts[:save_format][/%\d+d/]
       raise ArgumentError, "%d is required to properly save extracted sprites."
     end
 
