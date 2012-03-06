@@ -1,11 +1,10 @@
-#coding: utf-8
 require 'fileutils'
 require 'oily_png'
 
 class Spriteous
   def initialize(data)
     # Allow for creation from either raw PNG data or a file.
-    meth = data[0] == "\x89" ? :from_string : :from_file
+    meth = data[1..3] == "PNG" ? :from_string : :from_file
     @img = ChunkyPNG::Image.send meth, data
 
     back, @w = @img.pixels.first, @img.width
