@@ -7,7 +7,9 @@ class Spriteous
     meth = data[1..3] == "PNG" ? :from_string : :from_file
     @img = ChunkyPNG::Image.send meth, data
 
-    back, @w = @img.pixels.first, @img.width
+    # Determine the sheet's background color by checking the last pixel. Obtain
+    # the sheet's width, which is used to determine a pixel's neighbors.
+    back, @w = @img.pixels.last, @img.width
 
     # The original image's pixels get modified in place to erase the background
     # color, They're duplicated because the algorithm relies on "erasing" found
@@ -28,7 +30,7 @@ class Spriteous
     until queue.empty?
       p = queue.pop
 
-      if @pixels[p] > 0
+      if @pixels[p] && @pixels[p] > 0
         # Store this non-transparent pixel's index and then make it transparent
         # to avoid unnecessarily checking it again from a neighbor.
         @pixels[(@found << p).last] = 0
