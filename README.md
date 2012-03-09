@@ -1,5 +1,5 @@
 ### Description
-Spriteous is a righteous sprite extraction utility. It uses a "reverse flood fill" algorithm to naively obtain each individual sprite from a spritesheet, "sprite" here defined as a contiguous group of pixels which do not match the background color (assumed to be the first pixel) of the sheet.
+Spriteous is a righteous sprite extraction utility. It uses a "reverse flood fill" algorithm to naively obtain each individual sprite from a spritesheet, "sprite" here defined as a contiguous group of pixels which do not match the background color, assumed to be the last pixel of the sheet.
 
 ### Installation
     gem install spriteous
